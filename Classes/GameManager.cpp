@@ -74,7 +74,10 @@ void GameManager::update(){
 		case (int)GameMode::GUIDE_MODE:{
 			switch (_guidePhase){
 			case 0:{
-				if (GameManager::getInstance()->_getReadyPhaseCounter == 32){
+				if (GameManager::getInstance()->_getReadyPhaseCounter < 32) {
+					GameManager::getInstance()->_getReadyPhaseCounter++;
+				}
+				else if (GameManager::getInstance()->_getReadyPhaseCounter == 32){
 					GameEffect * guideWords = GlobalEffect::create(73, \
 						GAME_EFFECT_DIRECTION_DOWN, \
 						Director::getInstance()->getWinSize().width / 2, \
@@ -87,15 +90,18 @@ void GameManager::update(){
 							GameEffectManager::getInstance()->_gameEffects.push_back(guideWords);
 						}
 					}
-
-				}
-
-				if (GameManager::getInstance()->_getReadyPhaseCounter != -1){
 					GameManager::getInstance()->_getReadyPhaseCounter++;
 				}
+
+				/*if (GameManager::getInstance()->_getReadyPhaseCounter != -1){
+					GameManager::getInstance()->_getReadyPhaseCounter++;
+				}*/
 			}break;
 			case 1:{
-				if (GameManager::getInstance()->_getReadyPhaseCounter == 32){
+				if (GameManager::getInstance()->_getReadyPhaseCounter < 32) {
+					GameManager::getInstance()->_getReadyPhaseCounter++;
+				}
+				else if (GameManager::getInstance()->_getReadyPhaseCounter == 32){
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
 					GameEffect * guideWords = GlobalEffect::create(74, \
 						GAME_EFFECT_DIRECTION_DOWN, \
@@ -115,17 +121,21 @@ void GameManager::update(){
 						}
 					}
 
+					GameManager::getInstance()->_getReadyPhaseCounter++;
 					//GameManager::getInstance()->_getReadyPhaseCounter = -1;
 				}
 
-				if (GameManager::getInstance()->_getReadyPhaseCounter != -1){
+				/*if (GameManager::getInstance()->_getReadyPhaseCounter != -1){
 					GameManager::getInstance()->_getReadyPhaseCounter++;
-				}
+				}*/
 
 
 			}break;
 			case 2:{
-				if (GameManager::getInstance()->_getReadyPhaseCounter == 32){
+				if (GameManager::getInstance()->_getReadyPhaseCounter < 32) {
+					GameManager::getInstance()->_getReadyPhaseCounter++;
+				}
+				else if (GameManager::getInstance()->_getReadyPhaseCounter == 32){
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
 					GameEffect * guideWords = GlobalEffect::create(75, \
 						GAME_EFFECT_DIRECTION_DOWN, \
@@ -145,15 +155,19 @@ void GameManager::update(){
 						}
 					}
 
+					GameManager::getInstance()->_getReadyPhaseCounter++;
 					//GameManager::getInstance()->_getReadyPhaseCounter = -1;
 				}
 
-				if (GameManager::getInstance()->_getReadyPhaseCounter <10000){
+				/*if (GameManager::getInstance()->_getReadyPhaseCounter <10000){
 					GameManager::getInstance()->_getReadyPhaseCounter++;
-				}
+				}*/
 			}break;
 			case 3:{
-					   if (GameManager::getInstance()->_getReadyPhaseCounter == 32){
+					   if (GameManager::getInstance()->_getReadyPhaseCounter < 32) {
+						   GameManager::getInstance()->_getReadyPhaseCounter++;
+					   }
+					   else if (GameManager::getInstance()->_getReadyPhaseCounter == 32){
 						   GameEffect * guideWords = GlobalEffect::create(77, \
 							   GAME_EFFECT_DIRECTION_DOWN, \
 							   Director::getInstance()->getWinSize().width / 2, \
@@ -167,12 +181,13 @@ void GameManager::update(){
 							   }
 						   }
 
+						   GameManager::getInstance()->_getReadyPhaseCounter++;
 						   //GameManager::getInstance()->_getReadyPhaseCounter = -1;
 					   }
 
-					   if (GameManager::getInstance()->_getReadyPhaseCounter <10000){
+					   /*if (GameManager::getInstance()->_getReadyPhaseCounter <10000){
 						   GameManager::getInstance()->_getReadyPhaseCounter++;
-					   }
+					   }*/
 			}break;
 			case 4:{
 					   if (GameManager::getInstance()->_getReadyPhaseCounter == 32){
@@ -375,16 +390,19 @@ void GameManager::update(){
 				_playerMoveCompleteInGuide = false;
 			}
 
+			//log("MapManager::getInstance()->_recurrenceLineInGuidePosY:%d", MapManager::getInstance()->_recurrenceLineInGuidePosY);
 			if (CharacterManager::getInstance()->_player->getPositionY() <= MapManager::getInstance()->_recurrenceLineInGuidePosY){
 				for (std::vector<Character *>::iterator it = CharacterManager::getInstance()->_hamsters.begin(); it != CharacterManager::getInstance()->_hamsters.end();){
 					if ((*it) != nullptr){
 						(*it)->setPositionY((*it)->getPositionY()+MapManager::getInstance()->_recurrenceDistanceInGuide);
+						(*it)->setDestPositionY((*it)->getDestPositionY() + MapManager::getInstance()->_recurrenceDistanceInGuide);
 					}
 					it++;
 				}
 				for (std::vector<Character *>::iterator it = CharacterManager::getInstance()->_masters.begin(); it != CharacterManager::getInstance()->_masters.end();){
 					if ((*it) != nullptr){
 						(*it)->setPositionY((*it)->getPositionY() + MapManager::getInstance()->_recurrenceDistanceInGuide);
+						(*it)->setDestPositionY((*it)->getDestPositionY() + MapManager::getInstance()->_recurrenceDistanceInGuide);
 					}
 					it++;
 				}
@@ -413,12 +431,14 @@ void GameManager::update(){
 					for (std::vector<Character *>::iterator it = CharacterManager::getInstance()->_hamsters.begin(); it != CharacterManager::getInstance()->_hamsters.end();){
 						if ((*it) != nullptr){
 							(*it)->setPositionY((*it)->getPositionY() + MapManager::getInstance()->_recurrenceDistanceInGuide);
+							(*it)->setDestPositionY((*it)->getDestPositionY() + MapManager::getInstance()->_recurrenceDistanceInGuide);
 						}
 						it++;
 					}
 					for (std::vector<Character *>::iterator it = CharacterManager::getInstance()->_masters.begin(); it != CharacterManager::getInstance()->_masters.end();){
 						if ((*it) != nullptr){
 							(*it)->setPositionY((*it)->getPositionY() + MapManager::getInstance()->_recurrenceDistanceInGuide);
+							(*it)->setDestPositionY((*it)->getDestPositionY() + MapManager::getInstance()->_recurrenceDistanceInGuide);
 						}
 						it++;
 					}

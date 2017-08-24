@@ -548,6 +548,7 @@ void Character::updateMove(){
 }
 
 bool Character::isMoving(){
+
 	return (getPositionX() != _destPosition.x || getPositionY() != _destPosition.y);
 }
 

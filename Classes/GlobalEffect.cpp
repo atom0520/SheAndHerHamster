@@ -5,6 +5,7 @@
 #include "CharacterManager.h"
 #include "OperationManager.h"
 #include "SimpleAudioEngine.h"
+#include "Global.h"
 using namespace CocosDenshion;
 
 GlobalEffect::GlobalEffect(){
@@ -65,10 +66,10 @@ void GlobalEffect::updateFrame(){
 			case 0:
 			case 1:
 			case 2:{
-						SimpleAudioEngine::getInstance()->playEffect("sound/counter.wav");
+						SimpleAudioEngine::getInstance()->playEffect(COUNTER_EFFECT_FILE_PATH);
 			}break;
 			case 3:{
-						SimpleAudioEngine::getInstance()->playEffect("sound/ready_go.wav");
+						SimpleAudioEngine::getInstance()->playEffect(READY_GO_EFFECT_FILE_PATH);
 			}break;
 			}
 		}
@@ -81,7 +82,7 @@ void GlobalEffect::updateFrame(){
 		if (_animationCounter == 0){
 			switch (_currentAnimationIndex){
 			case 0:{
-						SimpleAudioEngine::getInstance()->playEffect("sound/horn.wav");
+						SimpleAudioEngine::getInstance()->playEffect(HORN_EFFECT_FILE_PATH);
 						
 			}break;
 			}
@@ -102,15 +103,15 @@ void GlobalEffect::updateFrame(){
 							case 8:{
 									   switch (_id){
 									   case 36:{
-										   SimpleAudioEngine::getInstance()->playEffect("sound/good_f.wav");
+										   SimpleAudioEngine::getInstance()->playEffect(GOOD_FEMALE_EFFECT_FILE_PATH);
 									   }break;
 									   case 37:
 									   {
-											SimpleAudioEngine::getInstance()->playEffect("sound/cool_f.wav");
+											SimpleAudioEngine::getInstance()->playEffect(COOL_FEMALE_EFFECT_FILE_PATH);
 									   }break;
 									   case 38:
 									   {
-										    SimpleAudioEngine::getInstance()->playEffect("sound/perfect_f.wav");
+										    SimpleAudioEngine::getInstance()->playEffect(PERFECT_FEMALE_EFFECT_FILE_PATH);
 									   }break;
 									   }
 										
@@ -121,15 +122,15 @@ void GlobalEffect::updateFrame(){
 							case 6:{
 									switch (_id){
 									case 36:{
-												SimpleAudioEngine::getInstance()->playEffect("sound/good_m.wav");
+												SimpleAudioEngine::getInstance()->playEffect(GOOD_MALE_EFFECT_FILE_PATH);
 									}break;
 									case 37:
 									{
-												SimpleAudioEngine::getInstance()->playEffect("sound/cool_m.wav");
+												SimpleAudioEngine::getInstance()->playEffect(COOL_MALE_EFFECT_FILE_PATH);
 									}break;
 									case 38:
 									{
-												SimpleAudioEngine::getInstance()->playEffect("sound/perfect_m.wav");
+												SimpleAudioEngine::getInstance()->playEffect(PERFECT_MALE_EFFECT_FILE_PATH);
 									}break;
 									}
 							}break;
@@ -147,7 +148,7 @@ void GlobalEffect::updateFrame(){
 	}break;
 	case 85:{
 				if (_currentAnimationIndex == 0 && _animationCounter == 6){
-					SimpleAudioEngine::getInstance()->playEffect("sound/good_f.wav");
+					SimpleAudioEngine::getInstance()->playEffect(GOOD_FEMALE_EFFECT_FILE_PATH);
 				}
 				
 	}break;

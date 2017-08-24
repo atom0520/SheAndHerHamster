@@ -1,11 +1,12 @@
 #include "ModeSelLayer.h"
 #include "HamsterSelScene.h"
 #include "GameScene.h"
-
 #include "GlobalEffect.h"
 #include "GameManager.h"
 #include "TimeManager.h"
 #include "SimpleAudioEngine.h"
+#include "Global.h"
+
 using namespace CocosDenshion;
 
 long ModeSelLayer::old_clock_count = 0;
@@ -101,7 +102,7 @@ bool ModeSelLayer::init()
 	_okBtn->setTag(2);
 	_okBtn->setScale(0.5);
 	//_okBtn->setPosition(winSize.width / 2 - _okBtn->getContentSize().width*0.5/2 -4, 
-		_okBtn->setPosition(winSize.width / 2,\
+	_okBtn->setPosition(winSize.width / 2,\
 		_modeNotes[_selectIndex]->getPositionY() - _modeNotes[_selectIndex]->getContentSize().height / 2 - _okBtn->getContentSize().height*0.5 / 2 - 16);
 	btnMenu->addChild(_okBtn, 2);
 
@@ -230,10 +231,10 @@ void ModeSelLayer::onEnter(){
 	if (SimpleAudioEngine::getInstance()->isBackgroundMusicPlaying())
 	{
 		SimpleAudioEngine::getInstance()->pauseBackgroundMusic();
-		SimpleAudioEngine::getInstance()->playBackgroundMusic("sound/mode_sel_scene.wav", true);
+		SimpleAudioEngine::getInstance()->playBackgroundMusic(MODE_SEL_SCENE_BGM_FILE_PATH, true);
 	}
 	else{
-		SimpleAudioEngine::getInstance()->playBackgroundMusic("sound/mode_sel_scene.wav", true);
+		SimpleAudioEngine::getInstance()->playBackgroundMusic(MODE_SEL_SCENE_BGM_FILE_PATH, true);
 	}
 
 	this->schedule(schedule_selector(ModeSelLayer::update),0.03);
@@ -496,7 +497,7 @@ void ModeSelLayer::menuCallBack(Ref* pSender){
 		}
 	}break;
 	case 2:{
-			SimpleAudioEngine::getInstance()->playEffect("sound/select_fixed.wav");
+			SimpleAudioEngine::getInstance()->playEffect(SELECT_FIXED_EFFECT_FILE_PATH);
 			_isSelectFixed = true;
 			_toLeftBtn->setEnabled(false);
 			_toRightBtn->setEnabled(false);

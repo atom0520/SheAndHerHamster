@@ -4,6 +4,8 @@
 #include "GameManager.h"
 #include "TimeManager.h"
 #include "SimpleAudioEngine.h"
+#include "Global.h"
+
 using namespace CocosDenshion;
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
@@ -129,10 +131,10 @@ void HamsterSelLayer::onEnter()
 	if (SimpleAudioEngine::getInstance()->isBackgroundMusicPlaying())
 	{
 		SimpleAudioEngine::getInstance()->pauseBackgroundMusic();
-		SimpleAudioEngine::getInstance()->playBackgroundMusic("sound/hamster_sel_scene.wav", true);
+		SimpleAudioEngine::getInstance()->playBackgroundMusic(HAMSTER_SEL_SCENE_BGM_FILE_PATH, true);
 	}
 	else{
-		SimpleAudioEngine::getInstance()->playBackgroundMusic("sound/hamster_sel_scene.wav", true);
+		SimpleAudioEngine::getInstance()->playBackgroundMusic(HAMSTER_SEL_SCENE_BGM_FILE_PATH, true);
 	}
 	this->schedule(schedule_selector(HamsterSelLayer::update), 0.03);
 }
@@ -169,7 +171,7 @@ void HamsterSelLayer::update(float dt){
 					  if (_hamsterHeads[i]->getBoundingBox().containsPoint(InputManager::getInstance()->_mousePosition)){
 						  
 						  if (_selectIndex != i){
-							  SimpleAudioEngine::getInstance()->playEffect("sound/cursor.wav");
+							  SimpleAudioEngine::getInstance()->playEffect(CURSOR_EFFECT_FILE_PATH);
 							  _selectIndex = i;
 							  _selectRect->setPosition(_hamsterHeads[_selectIndex]->getPosition());
 							  _selectedHamsterNameSprite->setSpriteFrame(Sprite::create(String::createWithFormat("hamster_sel_layer/name_%02d.png", _selectIndex + 1)->getCString())->getSpriteFrame());
@@ -206,7 +208,7 @@ void HamsterSelLayer::update(float dt){
 				  if (_selectIndex % 4>0){
 					  delay = 0;
 					  _selectIndex--;
-					  SimpleAudioEngine::getInstance()->playEffect("sound/cursor.wav");
+					  SimpleAudioEngine::getInstance()->playEffect(CURSOR_EFFECT_FILE_PATH);
 					  _selectRect->setPosition(_hamsterHeads[_selectIndex]->getPosition());
 					  _selectedHamsterNameSprite->setSpriteFrame(Sprite::create(String::createWithFormat("hamster_sel_layer/name_%02d.png", _selectIndex + 1)->getCString())->getSpriteFrame());
 					  
@@ -232,7 +234,7 @@ void HamsterSelLayer::update(float dt){
 					  delay = 0;
 
 					  _selectIndex++;
-					  SimpleAudioEngine::getInstance()->playEffect("sound/cursor.wav");
+					  SimpleAudioEngine::getInstance()->playEffect(CURSOR_EFFECT_FILE_PATH);
 					  _selectRect->setPosition(_hamsterHeads[_selectIndex]->getPosition());
 					  _selectedHamsterNameSprite->setSpriteFrame(Sprite::create(String::createWithFormat("hamster_sel_layer/name_%02d.png", _selectIndex + 1)->getCString())->getSpriteFrame());
 				  
@@ -256,7 +258,7 @@ void HamsterSelLayer::update(float dt){
 				  if (_selectIndex / 4 == 1){
 					  delay = 0;
 					  _selectIndex -= 4;
-					  SimpleAudioEngine::getInstance()->playEffect("sound/cursor.wav");
+					  SimpleAudioEngine::getInstance()->playEffect(CURSOR_EFFECT_FILE_PATH);
 					  _selectRect->setPosition(_hamsterHeads[_selectIndex]->getPosition());
 					  _selectedHamsterNameSprite->setSpriteFrame(Sprite::create(String::createWithFormat("hamster_sel_layer/name_%02d.png", _selectIndex + 1)->getCString())->getSpriteFrame());
 				  
@@ -280,7 +282,7 @@ void HamsterSelLayer::update(float dt){
 				  if (_selectIndex / 4 == 0){
 					  delay = 0;
 					  _selectIndex += 4;
-					  SimpleAudioEngine::getInstance()->playEffect("sound/cursor.wav");
+					  SimpleAudioEngine::getInstance()->playEffect(CURSOR_EFFECT_FILE_PATH);
 					  _selectRect->setPosition(_hamsterHeads[_selectIndex]->getPosition());
 					  _selectedHamsterNameSprite->setSpriteFrame(Sprite::create(String::createWithFormat("hamster_sel_layer/name_%02d.png", _selectIndex + 1)->getCString())->getSpriteFrame());
 				  
@@ -354,7 +356,7 @@ bool HamsterSelLayer::onTouchBegan(Touch * touch, Event *event)
 	{
 		if (_hamsterHeads[i]->getBoundingBox().containsPoint(touch->getLocation())){
 			if (_selectIndex != i){
-				SimpleAudioEngine::getInstance()->playEffect("sound/cursor.wav");
+				SimpleAudioEngine::getInstance()->playEffect(CURSOR_EFFECT_FILE_PATH);
 				_selectIndex = i;
 				_selectRect->setPosition(_hamsterHeads[_selectIndex]->getPosition());
 				_selectedHamsterNameSprite->setSpriteFrame(Sprite::create(String::createWithFormat("hamster_sel_layer/name_%02d.png", _selectIndex + 1)->getCString())->getSpriteFrame());
@@ -384,7 +386,7 @@ void HamsterSelLayer::onTouchMoved(Touch * touch, Event *event)
 	{
 		if (_hamsterHeads[i]->getBoundingBox().containsPoint(touch->getLocation())){
 			if (_selectIndex != i){
-				SimpleAudioEngine::getInstance()->playEffect("sound/cursor.wav");
+				SimpleAudioEngine::getInstance()->playEffect(CURSOR_EFFECT_FILE_PATH);
 				_selectIndex = i;
 				_selectRect->setPosition(_hamsterHeads[_selectIndex]->getPosition());
 				_selectedHamsterNameSprite->setSpriteFrame(Sprite::create(String::createWithFormat("hamster_sel_layer/name_%02d.png", _selectIndex + 1)->getCString())->getSpriteFrame());
@@ -416,7 +418,7 @@ void HamsterSelLayer::menuCallBack(Ref *pSender){
 
 			   _okBtn->setEnabled(false);
 
-			   SimpleAudioEngine::getInstance()->playEffect("sound/select_fixed.wav");
+			   SimpleAudioEngine::getInstance()->playEffect(SELECT_FIXED_EFFECT_FILE_PATH);
 
 			   if (_hamster != nullptr){
 				   if (_hamster->getReferenceCount() > 0){

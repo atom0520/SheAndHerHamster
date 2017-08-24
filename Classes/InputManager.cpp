@@ -51,13 +51,13 @@ void InputManager::onKeyReleased(EventKeyboard::KeyCode keyCode, Event * event){
 
 void InputManager::onMouseUp(Event *event){
 	_isKeyPressed[(int)InputManager::KeyCode::KEY_LEFT_MOUSE_BUTTON \
-		+ ((EventMouse *)event)->getMouseButton()] = false;
+		+ (int)((EventMouse *)event)->getMouseButton()] = false;
 }
 
 void InputManager::onMouseDown(Event *event){
 	
 	_isKeyPressed[(int)InputManager::KeyCode::KEY_LEFT_MOUSE_BUTTON \
-		+ ((EventMouse *)event)->getMouseButton()] = true;
+		+ (int)((EventMouse *)event)->getMouseButton()] = true;
 }
 
 void InputManager::onMouseMove(Event *event){

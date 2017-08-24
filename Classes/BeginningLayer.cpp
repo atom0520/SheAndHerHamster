@@ -2,6 +2,8 @@
 #include "TitleScene.h"
 #include "DataManager.h"
 #include "SimpleAudioEngine.h"
+#include "Global.h"
+
 using namespace CocosDenshion;
 
 Scene*  BeginningLayer::createScene()
@@ -24,28 +26,29 @@ bool BeginningLayer::init(){
 	//this->addChild(wishSprite, 1);
 	wishSprite->setAnchorPoint(Point(0, 0));
 
-	SimpleAudioEngine::getInstance()->preloadBackgroundMusic("sound/title.wav");
-	SimpleAudioEngine::getInstance()->preloadBackgroundMusic("sound/button.wav");
-	SimpleAudioEngine::getInstance()->preloadBackgroundMusic("sound/mode_sel_scene.wav");
-	SimpleAudioEngine::getInstance()->preloadBackgroundMusic("sound/mode_guide_game_bgm.wav");
-	SimpleAudioEngine::getInstance()->preloadBackgroundMusic("sound/select_fixed.wav");
-	SimpleAudioEngine::getInstance()->preloadBackgroundMusic("sound/hamster_sel_scene.wav");
-	SimpleAudioEngine::getInstance()->preloadBackgroundMusic("sound/counter.wav");
-	SimpleAudioEngine::getInstance()->preloadBackgroundMusic("sound/cursor.wav");
-	SimpleAudioEngine::getInstance()->preloadBackgroundMusic("sound/horn.wav");
-	SimpleAudioEngine::getInstance()->preloadBackgroundMusic("sound/ready_go.wav");
-	SimpleAudioEngine::getInstance()->preloadBackgroundMusic("sound/mode_ranking_game_bgm.wav");
-	SimpleAudioEngine::getInstance()->preloadBackgroundMusic("sound/mode_elimination_game_bgm.wav");
-	SimpleAudioEngine::getInstance()->preloadBackgroundMusic("sound/good_f.wav");
-	SimpleAudioEngine::getInstance()->preloadBackgroundMusic("sound/good_m.wav");
-	SimpleAudioEngine::getInstance()->preloadBackgroundMusic("sound/cool_f.wav");
-	SimpleAudioEngine::getInstance()->preloadBackgroundMusic("sound/cool_m.wav");
-	SimpleAudioEngine::getInstance()->preloadBackgroundMusic("sound/perfect_f.wav");
-	SimpleAudioEngine::getInstance()->preloadBackgroundMusic("sound/perfect_m.wav");
-	SimpleAudioEngine::getInstance()->preloadBackgroundMusic("sound/mode_survival_game_bgm.wav");
-	SimpleAudioEngine::getInstance()->preloadBackgroundMusic("sound/error.wav");
-	SimpleAudioEngine::getInstance()->preloadBackgroundMusic("sound/win.wav");
-	SimpleAudioEngine::getInstance()->preloadBackgroundMusic("sound/lose.wav");
+	SimpleAudioEngine::getInstance()->preloadBackgroundMusic(TITLE_SCENE_BGM_FILE_PATH);
+	SimpleAudioEngine::getInstance()->preloadBackgroundMusic(MODE_SEL_SCENE_BGM_FILE_PATH);
+	SimpleAudioEngine::getInstance()->preloadBackgroundMusic(HAMSTER_SEL_SCENE_BGM_FILE_PATH);
+	SimpleAudioEngine::getInstance()->preloadBackgroundMusic(MODE_GUIDE_GAME_BGM_FILE_PATH);
+	SimpleAudioEngine::getInstance()->preloadBackgroundMusic(MODE_RANKING_GAME_BGM_FILE_PATH);
+	SimpleAudioEngine::getInstance()->preloadBackgroundMusic(MODE_ELIMINATION_GAME_BGM_FILE_PATH);
+	SimpleAudioEngine::getInstance()->preloadBackgroundMusic(MODE_SURVIVAL_GAME_BGM_FILE_PATH);
+
+	SimpleAudioEngine::getInstance()->preloadEffect(BUTTON_EFFECT_FILE_PATH);
+	SimpleAudioEngine::getInstance()->preloadEffect(COUNTER_EFFECT_FILE_PATH);
+	SimpleAudioEngine::getInstance()->preloadEffect(CURSOR_EFFECT_FILE_PATH);
+	SimpleAudioEngine::getInstance()->preloadEffect(SELECT_FIXED_EFFECT_FILE_PATH);
+	SimpleAudioEngine::getInstance()->preloadEffect(HORN_EFFECT_FILE_PATH);
+	SimpleAudioEngine::getInstance()->preloadEffect(READY_GO_EFFECT_FILE_PATH);
+	SimpleAudioEngine::getInstance()->preloadEffect(GOOD_FEMALE_EFFECT_FILE_PATH);
+	SimpleAudioEngine::getInstance()->preloadEffect(GOOD_MALE_EFFECT_FILE_PATH);
+	SimpleAudioEngine::getInstance()->preloadEffect(COOL_FEMALE_EFFECT_FILE_PATH);
+	SimpleAudioEngine::getInstance()->preloadEffect(COOL_MALE_EFFECT_FILE_PATH);
+	SimpleAudioEngine::getInstance()->preloadEffect(PERFECT_FEMALE_EFFECT_FILE_PATH);
+	SimpleAudioEngine::getInstance()->preloadEffect(PERFECT_MALE_EFFECT_FILE_PATH);
+	SimpleAudioEngine::getInstance()->preloadEffect(ERROR_EFFECT_FILE_PATH);
+	SimpleAudioEngine::getInstance()->preloadEffect(WIN_EFFECT_FILE_PATH);
+	SimpleAudioEngine::getInstance()->preloadEffect(LOSE_EFFECT_FILE_PATH);
     /*
     SpriteFrameCache::getInstance()->addSpriteFramesWithFile("game_effect/game_effect_spriteframes_01.plist","game_effect/game_effect_spriteframes_01.pvr.ccz");
 	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("game_effect/game_effect_spriteframes_02.plist", "game_effect/game_effect_spriteframes_02.pvr.ccz");*/
@@ -56,10 +59,10 @@ bool BeginningLayer::init(){
     SpriteFrameCache::getInstance()->addSpriteFramesWithFile("hud/ranking/ranking_num_spriteframes.plist","hud/ranking/ranking_num_spriteframes.pvr.ccz");
     
 
-	std::string fullPathForIELTSWordsData = FileUtils::getInstance()->fullPathForFilename("data/ielts_words_UTF-8.txt");
+	std::string fullPathForIELTSWordsData = FileUtils::getInstance()->fullPathForFilename(IELTS_WORDS_FILE_PATH);
 
 	std::string ieltsWordsDataStdStr = FileUtils::getInstance()->getStringFromFile(fullPathForIELTSWordsData);
-		
+	
 
 	String * ieltsWordsDataCCStr = String::create(ieltsWordsDataStdStr);
 	Array * ieltsWordsDataSet = ieltsWordsDataCCStr->componentsSeparatedByString("\n");
@@ -72,7 +75,7 @@ bool BeginningLayer::init(){
 		String * wordDataSubCCStr1 = String::create(wordDataSubStdStr1);*/
 
 		std::string wordDataSubStdStr2 = ((String *)wordDataSet->getObjectAtIndex(2))->getCString();
-		wordDataSubStdStr2.erase(wordDataSubStdStr2.size() - 1);
+		//wordDataSubStdStr2.erase(wordDataSubStdStr2.size() - 1);
 		String * wordDataSubCCStr2 = String::create(wordDataSubStdStr2);
 
 		DataManager::getInstance()->_ieltsWords.push_back(DataManager::Word(i+1, \

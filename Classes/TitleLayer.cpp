@@ -1,9 +1,10 @@
 #include "TitleLayer.h"
 #include "ModeSelScene.h"
 #include "HamsterSelScene.h"
-
 #include "GameManager.h"
 #include "SimpleAudioEngine.h"
+#include "Global.h"
+
 using namespace CocosDenshion;
 
 TitleLayer::TitleLayer()
@@ -33,7 +34,7 @@ bool TitleLayer::init()
 		"title/start_1.png", \
 		CC_CALLBACK_1(TitleLayer::menuCallback, this));
 	titleMenu->addChild(startMenuItem,1);
-	startMenuItem->setScale(0.6);
+	startMenuItem->setScale(0.6f);
 	startMenuItem->setAnchorPoint(Point(0, 0));
 	startMenuItem->setPosition(Point(200, 200));
 	startMenuItem->setTag(0);
@@ -42,7 +43,7 @@ bool TitleLayer::init()
 		"title/exit_1.png", \
 		CC_CALLBACK_1(TitleLayer::menuCallback, this));
 	titleMenu->addChild(exitMenuItem, 1);
-	exitMenuItem->setScale(0.6);
+	exitMenuItem->setScale(0.6f);
 	exitMenuItem->setAnchorPoint(Point(0, 0));
 	exitMenuItem->setPosition(Point(startMenuItem->getPositionX(), startMenuItem->getPositionY()-50));
 	exitMenuItem->setTag(1);
@@ -59,15 +60,15 @@ void  TitleLayer::onEnter(){
 	if (SimpleAudioEngine::getInstance()->isBackgroundMusicPlaying())
 	{
 		SimpleAudioEngine::getInstance()->pauseBackgroundMusic();
-		SimpleAudioEngine::getInstance()->playBackgroundMusic("sound/title.wav", true);
+		SimpleAudioEngine::getInstance()->playBackgroundMusic(TITLE_SCENE_BGM_FILE_PATH, true);
 	}
 	else{
-		SimpleAudioEngine::getInstance()->playBackgroundMusic("sound/title.wav", true);
+		SimpleAudioEngine::getInstance()->playBackgroundMusic(TITLE_SCENE_BGM_FILE_PATH, true);
 	}
 }
 
 void TitleLayer::menuCallback(Ref*pSender){
-	SimpleAudioEngine::getInstance()->playEffect("sound/button.wav");
+	SimpleAudioEngine::getInstance()->playEffect(BUTTON_EFFECT_FILE_PATH);
 
 	switch (((MenuItemImage*)pSender)->getTag()){
 	case 0:{
@@ -77,7 +78,7 @@ void TitleLayer::menuCallback(Ref*pSender){
 		//auto transition = TransitionFadeDown::create(0.5, newScene);
 		auto transition = TransitionFade::create(0.5, newScene);
         //auto transition = TransitionPageTurn::create(0.5, newScene,true);
-		CCLOG("replaceScene(ModeSelScene::createScene())");
+		//CCLOG("replaceScene(ModeSelScene::createScene())");
         
 		Director::getInstance()->replaceScene(transition);
 	}	

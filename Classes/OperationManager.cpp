@@ -4,8 +4,9 @@
 #include "PausePopupLayer.h"
 #include "GameManager.h"
 #include "QuestionManager.h"
-
 #include "SimpleAudioEngine.h"
+#include "Global.h"
+
 using namespace CocosDenshion;
 
 //ÉùÃ÷¾²Ì¬±äÁ¿
@@ -91,7 +92,7 @@ void OperationManager::optionBtnCallBack(Ref *pSender){
 
 		QuestionManager::getInstance()->_cdAfterError = CD_TIME_AFTER_ERROR;
 		QuestionManager::getInstance()->highlightKeyOption();
-		SimpleAudioEngine::getInstance()->playEffect("sound/error.wav");
+		SimpleAudioEngine::getInstance()->playEffect(ERROR_EFFECT_FILE_PATH);
 
 	}
 }

@@ -6,6 +6,8 @@
 #include "GlobalEffect.h"
 #include "GameManager.h"
 #include "SimpleAudioEngine.h"
+#include "Global.h"
+
 using namespace CocosDenshion;
 
 //ÉùÃ÷¾²Ì¬±äÁ¿
@@ -230,7 +232,7 @@ void GameEffectManager::update(){
 									GAME_EFFECT_DIRECTION_DOWN, \
 									OperationManager::getInstance()->_speedUpBtn->getPositionX(), \
 									OperationManager::getInstance()->_speedUpBtn->getPositionY());
-								selectRect->setScale(1.8);
+								selectRect->setScale(1.8f);
 
 								if (GameEffectManager::getInstance()->_glEffectLayer != nullptr){
 									if (selectRect != nullptr){
@@ -532,7 +534,7 @@ void GameEffectManager::update(){
 									GAME_EFFECT_DIRECTION_DOWN, \
 									OperationManager::getInstance()->_pauseBtn->getPositionX(), \
 									OperationManager::getInstance()->_pauseBtn->getPositionY());
-								selectRect->setScale(1.8);
+								selectRect->setScale(1.8f);
 
 								if (GameEffectManager::getInstance()->_glEffectLayer != nullptr){
 									if (selectRect != nullptr){
@@ -575,7 +577,7 @@ void GameEffectManager::update(){
 							(*it)->update();
 							if (((GameEffect *)*it)->_currentAnimationIndex == 2 \
 								&& ((GameEffect *)*it)->_animationCounter == 32){
-								SimpleAudioEngine::getInstance()->playEffect("sound/ready_go.wav");
+								SimpleAudioEngine::getInstance()->playEffect(READY_GO_EFFECT_FILE_PATH);
 							}
 							it++;
 						}

@@ -10,6 +10,8 @@
 #include "GameScene.h"
 #include "TitleScene.h"
 #include "SimpleAudioEngine.h"
+#include "Global.h"
+
 using namespace CocosDenshion;
 
 EndPopupLayer::EndPopupLayer(){
@@ -154,10 +156,10 @@ EndPopupLayer * EndPopupLayer::create(int type){
 		if (SimpleAudioEngine::getInstance()->isBackgroundMusicPlaying())
 		{
 			SimpleAudioEngine::getInstance()->pauseBackgroundMusic();
-			SimpleAudioEngine::getInstance()->playEffect("sound/win.wav");
+			SimpleAudioEngine::getInstance()->playEffect(WIN_EFFECT_FILE_PATH);
 		}
 		else{
-			SimpleAudioEngine::getInstance()->playEffect("sound/win.wav");
+			SimpleAudioEngine::getInstance()->playEffect(WIN_EFFECT_FILE_PATH);
 		}
 	}break;
 	case (int)Type::END_RANKING_LOSE:{
@@ -194,10 +196,10 @@ EndPopupLayer * EndPopupLayer::create(int type){
 		if (SimpleAudioEngine::getInstance()->isBackgroundMusicPlaying())
 		{
 			SimpleAudioEngine::getInstance()->pauseBackgroundMusic();
-			SimpleAudioEngine::getInstance()->playEffect("sound/lose.wav");
+			SimpleAudioEngine::getInstance()->playEffect(LOSE_EFFECT_FILE_PATH);
 		}
 		else{
-			SimpleAudioEngine::getInstance()->playEffect("sound/lose.wav");
+			SimpleAudioEngine::getInstance()->playEffect(LOSE_EFFECT_FILE_PATH);
 		}
 	}break;
 	case (int)Type::END_CAUGHT:{
@@ -234,10 +236,10 @@ EndPopupLayer * EndPopupLayer::create(int type){
 		if (SimpleAudioEngine::getInstance()->isBackgroundMusicPlaying())
 		{
 			SimpleAudioEngine::getInstance()->pauseBackgroundMusic();
-			SimpleAudioEngine::getInstance()->playEffect("sound/lose.wav");
+			SimpleAudioEngine::getInstance()->playEffect(LOSE_EFFECT_FILE_PATH);
 		}
 		else{
-			SimpleAudioEngine::getInstance()->playEffect("sound/lose.wav");
+			SimpleAudioEngine::getInstance()->playEffect(LOSE_EFFECT_FILE_PATH);
 		}
 	}break;
 	case (int)Type::END_SURVIVED:{
@@ -270,10 +272,10 @@ EndPopupLayer * EndPopupLayer::create(int type){
 		if (SimpleAudioEngine::getInstance()->isBackgroundMusicPlaying())
 		{
 			SimpleAudioEngine::getInstance()->pauseBackgroundMusic();
-			SimpleAudioEngine::getInstance()->playEffect("sound/win.wav");
+			SimpleAudioEngine::getInstance()->playEffect(WIN_EFFECT_FILE_PATH);
 		}
 		else{
-			SimpleAudioEngine::getInstance()->playEffect("sound/win.wav");
+			SimpleAudioEngine::getInstance()->playEffect(WIN_EFFECT_FILE_PATH);
 		}
 	}break;
 	}

@@ -15,6 +15,9 @@
 #include "GameEffectManager.h"
 #include "TimeManager.h"
 #include "SimpleAudioEngine.h"
+
+#include "Global.h"
+
 using namespace CocosDenshion;
 
 #define NEED_REFRESH_COMPILE 1
@@ -40,7 +43,7 @@ bool GameLayer::init()
 	this->addPlayer();
 	this->addOpponentHamsters();
     
-    log("finish adding hamsters");
+    //log("finish adding hamsters");
     
 	this->addMasters();
     
@@ -69,11 +72,12 @@ void GameLayer::onEnter()
 		if (SimpleAudioEngine::getInstance()->isBackgroundMusicPlaying())
 		{
 			SimpleAudioEngine::getInstance()->pauseBackgroundMusic();
-			SimpleAudioEngine::getInstance()->playBackgroundMusic("sound/mode_guide_game_bgm.wav", true);
+			SimpleAudioEngine::getInstance()->playBackgroundMusic(MODE_GUIDE_GAME_BGM_FILE_PATH, true);
 		}
 		else{
-			SimpleAudioEngine::getInstance()->playBackgroundMusic("sound/mode_guide_game_bgm.wav", true);
+			SimpleAudioEngine::getInstance()->playBackgroundMusic(MODE_GUIDE_GAME_BGM_FILE_PATH, true);
 		}
+
 	}break;
 	case (int)GameManager::GameMode::RANKING_MODE:
 	{
@@ -83,10 +87,10 @@ void GameLayer::onEnter()
 		if (SimpleAudioEngine::getInstance()->isBackgroundMusicPlaying())
 		{
 			SimpleAudioEngine::getInstance()->pauseBackgroundMusic();
-			SimpleAudioEngine::getInstance()->playBackgroundMusic("sound/mode_ranking_game_bgm.wav", true);
+			SimpleAudioEngine::getInstance()->playBackgroundMusic(MODE_RANKING_GAME_BGM_FILE_PATH, true);
 		}
 		else{
-			SimpleAudioEngine::getInstance()->playBackgroundMusic("sound/mode_ranking_game_bgm.wav", true);
+			SimpleAudioEngine::getInstance()->playBackgroundMusic(MODE_RANKING_GAME_BGM_FILE_PATH, true);
 		}
 	}break;
 	case (int)GameManager::GameMode::ELIMINATION_MODE:
@@ -99,11 +103,11 @@ void GameLayer::onEnter()
 		if (SimpleAudioEngine::getInstance()->isBackgroundMusicPlaying())
 		{
 			SimpleAudioEngine::getInstance()->pauseBackgroundMusic();
-			SimpleAudioEngine::getInstance()->playBackgroundMusic("sound/mode_elimination_game_bgm.wav", true);
+			SimpleAudioEngine::getInstance()->playBackgroundMusic(MODE_ELIMINATION_GAME_BGM_FILE_PATH, true);
 			
 		}
 		else{
-			SimpleAudioEngine::getInstance()->playBackgroundMusic("sound/mode_elimination_game_bgm.wav", true);
+			SimpleAudioEngine::getInstance()->playBackgroundMusic(MODE_ELIMINATION_GAME_BGM_FILE_PATH, true);
 			
 		}
 	}break;
@@ -117,15 +121,15 @@ void GameLayer::onEnter()
 		if (SimpleAudioEngine::getInstance()->isBackgroundMusicPlaying())
 		{
 			SimpleAudioEngine::getInstance()->pauseBackgroundMusic();
-			SimpleAudioEngine::getInstance()->playBackgroundMusic("sound/mode_survival_game_bgm.wav", true);
+			SimpleAudioEngine::getInstance()->playBackgroundMusic(MODE_SURVIVAL_GAME_BGM_FILE_PATH, true);
 		}
 		else{
-			SimpleAudioEngine::getInstance()->playBackgroundMusic("sound/mode_survival_game_bgm.wav", true);
+			SimpleAudioEngine::getInstance()->playBackgroundMusic(MODE_SURVIVAL_GAME_BGM_FILE_PATH, true);
 		}
 	}break;
 	}
 	
-    this->schedule(schedule_selector(GameLayer::update), 0.03);
+    this->schedule(schedule_selector(GameLayer::update), 0.03f);
 }
 
 void GameLayer::onExit()

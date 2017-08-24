@@ -187,17 +187,27 @@ void Hamster::update(){
 	else if (_energy>_maxEnergy){
 		_energy = _maxEnergy;
 	}
-
+	//log("GameManager::GameMode::GUIDE_MODE: %d", GameManager::GameMode::GUIDE_MODE);
 	switch (GameManager::getInstance()->_gameMode)
 	{
+		
 		case (int)GameManager::GameMode::GUIDE_MODE:{
+			/*log("GameManager::getInstance()->_guidePhase: %d", GameManager::getInstance()->_guidePhase);
+			log("GameManager::getInstance()->_gameState: %d", GameManager::getInstance()->_gameState);
+			log("_state: %d", _state);
+			log("_finish: %d", _finish);
+			log("isMoving(): %d", isMoving());*/
+			log("getPositionY(): %f", getPositionY());
+			log("_destPosition.y: %f", _destPosition.y);
 			if (GameManager::getInstance()->_guidePhase == 1){
+			
 				if (!isMoving() \
 					&& GameManager::getInstance()->_gameState == (int)GameManager::GameState::IN_THE_GAME \
 					&& _state != (int)State::WIN\
 					&& _state != (int)State::LOSE\
 					&& _state != (int)State::PAUSE\
 					&& _finish != true){
+					log("_moveTrigger: %d",_moveTrigger);
 					if (_moveTrigger != 0){
 						GameManager::getInstance()->_playerMoveCompleteInGuide = true;
 					}
@@ -797,8 +807,11 @@ void Hamster::updateFrame(){
 }
 
 void Hamster::updateAI(){
+	//log("GameManager::getInstance()->_gameMode:%d", GameManager::getInstance()->_gameMode);
+	//log("GameManager::getInstance()->_guidePhase:%d", GameManager::getInstance()->_guidePhase);
 	if (GameManager::getInstance()->_gameMode == (int)GameManager::GameMode::GUIDE_MODE \
 		&& GameManager::getInstance()->_guidePhase != 1 && GameManager::getInstance()->_guidePhase != 8){
+		
 		return;
 	}
 
@@ -824,7 +837,11 @@ void Hamster::updateAI(){
 		_runTriggerEnergy = (1 + rand() % 10)*HAMSTER_RUN_CONSUMED_ENERGY;
 	}
 
-	
+	if (GameManager::getInstance()->_gameMode == (int)GameManager::GameMode::GUIDE_MODE \
+		&& GameManager::getInstance()->_guidePhase != 8) {
+		return;
+	}
+
 	if (100+rand()%100 < _reactionTime + _reactivity){
 		_reactionTime = 0;
 		if (rand() % 100 < (50 + _intellegence)){

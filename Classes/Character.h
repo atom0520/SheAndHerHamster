@@ -63,6 +63,15 @@ public:
 
 	int _id;
 	int  _state;
+
+	int getDestPositionY() {
+		return _destPosition.y;
+	}
+
+	void setDestPositionY(int value) {
+		_destPosition.y = value;
+	}
+
 protected:
 	
 

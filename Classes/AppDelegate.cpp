@@ -38,7 +38,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
     auto director = Director::getInstance();
     auto glview = director->getOpenGLView();
     if(!glview) {
-		glview = GLViewImpl::create("Atom Game");
+		glview = GLViewImpl::create("She And Her Hamster");
         #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
 			glview->setFrameSize(DataManager::getInstance()->_configData.at("window_width").asInt(), \
 			DataManager::getInstance()->_configData.at("window_height").asInt());
